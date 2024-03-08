@@ -19,7 +19,7 @@ jobs:
           sudo apt install python3 && \
           pip install conan && \
           source ~/.profile && \
-          echo "conan versionnn: "; conan --version && \
+          echo "conan versionnnn: "; conan --version && \
           conan profile detect \
       - name: configure docs
         run: |
@@ -28,8 +28,9 @@ jobs:
         run: |
           make --silent -C build/ docs
       - name: Deploy docs to github pages
-        uses: Cecilapp/GitHub-Pages-deploy@v2
+        uses: Cecilapp/GitHub-Pages-deploy@v3
         env:
-          EMAIL: marinelli.matteo.rhcp@gmail.com
-          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BUILD_DIR: ./docs/html
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          email: marinelli.matteo.rhcp@gmail.com
+          build_dir: ./docs/html
