@@ -30,6 +30,6 @@ jobs:
       - name: Deploy docs to github pages
         uses: Cecilapp/GitHub-Pages-deploy@v2
         env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        with:
-          build_dir: ./docs/html
+          EMAIL: marinelli.matteo.rhcp@gmail.com
+          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BUILD_DIR: ./docs/html
