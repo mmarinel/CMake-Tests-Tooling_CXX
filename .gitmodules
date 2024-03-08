@@ -1,0 +1,3 @@
+[submodule "0_MINE/external/json"]
+	path = 0_MINE/external/json
+	url = git@github.com:nlohmann/json.git

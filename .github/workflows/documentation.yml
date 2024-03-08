@@ -1,0 +1,34 @@
+on:
+  push:
+    tags:
+      - "*"
+    branches: [master]
+
+jobs:
+  build-docs:
+    name: Build and publish documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - name: Install docs
+        run: |
+          mkdir -p build && \
+          sudo apt update && \
+          sudo apt install doxygen && \
+          sudo apt install python3 && \
+          pip install conan && \
+          source ~/.profile && \
+          conan profile detect \
+      - name: configure docs
+        run: |
+          cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -B build .
+      - name: build docs
+        run: |
+          make --silent -C build/ docs
+      - name: Deploy docs to github pages
+        uses: Cecilapp/GitHub-Pages-deploy@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          build_dir: ./docs/html

@@ -1,0 +1,10 @@
+file(GLOB MYLIB_SRCS LIST_DIRECTORIES FALSE CONFIGURE_DEPENDS "*.cpp")
+
+add_library(${MYLIB_NAME} STATIC ${MYLIB_SRCS})
+
+target_include_directories(${MYLIB_NAME} PUBLIC
+	"./"
+	"${CMAKE_BINARY_DIR}/${CONFIGURED_FILES_DIR}/include")
+
+target_set_warnings(${MYLIB_NAME} ${WARNINGS_ENABLED} ${WARNINGS_ENABLED_AS_ERROR})
+target_enable_lto(${MYLIB_NAME} ${LTO_ENABLED})
