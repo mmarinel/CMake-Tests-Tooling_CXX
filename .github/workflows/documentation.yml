@@ -19,7 +19,7 @@ jobs:
           sudo apt install python3 && \
           pip install conan && \
           source ~/.profile && \
-          echo "conan version: "; conan --version && \
+          echo "conan versionnnn: "; conan --version && \
           conan profile detect \
       - name: configure docs
         run: |
